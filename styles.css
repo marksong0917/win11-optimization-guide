@@ -99,3 +99,14 @@ ul.steps{list-style:disc}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
 }
+
+/* Funnel — author CTA */
+.funnel{background:#0d1526;color:#dbe2f0;border-radius:16px;padding:28px 30px;margin:34px 0 8px}
+.funnel h2{color:#fff;margin-bottom:10px}
+.funnel p{max-width:640px}
+.funnel strong{color:#fff}
+.funnel-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+.funnel-btn{display:inline-block;text-decoration:none;font-weight:600;font-size:.95rem;padding:11px 22px;border-radius:999px;border:1px solid #31405f;color:#e8ecf5}
+.funnel-btn:hover{border-color:#72809c}
+.funnel-btn.primary{background:#e85d1f;border-color:#e85d1f;color:#fff}
+.funnel-btn.primary:hover{background:#c74e15}
