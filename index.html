@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Windows 11 Optimization Guide — Min-Max: Minimal Bloat, Maximum Performance</title>
+<meta name="description" content="A clean, step-by-step Windows 11 optimization guide: minimal bloat, maximum performance. LTSC clean install, debloat, privacy, power, browser, and a final checklist. By Ze (Mark) Song.">
+<link rel="stylesheet" href="styles.css?v=1">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f2040'/%3E%3Ctext x='32' y='43' font-family='Arial' font-size='26' font-weight='700' fill='%237dd3fc' text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<div class="layout">
+
+  <aside class="sidebar">
+    <a class="logo" href="#top">Win11 <span>Min-Max</span> Guide</a>
+    <p class="logo-sub">Minimal bloat.<br>Maximum performance.<br>Clean system.</p>
+    <nav class="side-nav" aria-label="Sections">
+      <a href="#start">1. Start here — safety first</a>
+      <a href="#install">2. Clean install</a>
+      <a href="#debloat">3. Debloat &amp; privacy</a>
+      <a href="#performance">4. Performance</a>
+      <a href="#browser">5. Browser</a>
+      <a href="#advanced">6. Optional / advanced</a>
+      <a href="#warnings">7. What NOT to do</a>
+      <a href="#checklist">8. Final checklist</a>
+      <a href="#resources">Resources</a>
+    </nav>
+    <p class="side-foot">By Ze (Mark) Song<br>Rewritten edition of his Windows 11 Optimization Guide.</p>
+  </aside>
+
+  <main class="content" id="top">
+
+    <header class="hero">
+      <h1>Windows 11 Optimization Guide</h1>
+      <p class="hero-tag">The min-max way: strip Windows down to what you need, keep everything that matters, and make the machine fast and quiet. Step by step, in plain English.</p>
+      <div class="hero-meta">
+        <span>Time: about 1 hour</span>
+        <span>Skill: beginner-friendly</span>
+        <span>Works on: any Windows 11 PC</span>
+      </div>
+    </header>
+
+    <section id="start">
+      <h2>1. Start here — safety first</h2>
+      <p>Do these before you change anything. Five minutes here saves hours later.</p>
+      <ol class="steps">
+        <li><strong>Back up your files.</strong> Copy anything you care about to an external drive or cloud storage. A clean install erases the drive.</li>
+        <li><strong>Create a restore point</strong> (if you are tuning an existing install): search Start for <em>Create a restore point</em> → <em>Create</em>. Do this again right before the debloat tools in Section 3.</li>
+        <li><strong>Keep the PC plugged in.</strong> Laptops stay on wall power for the whole setup — about 30–45 minutes.</li>
+        <li><strong>Have your Windows licence ready.</strong> This guide assumes you activate Windows with a licence you own. Activation tools are listed in Resources for reference; how you activate is your own responsibility.</li>
+      </ol>
+      <div class="note"><strong>The one rule of this guide:</strong> every step is reversible, and nothing here removes Windows Update, Bluetooth, or network services. A fast PC that breaks itself is not optimized.</div>
+    </section>
+
+    <section id="install">
+      <h2>2. Clean install path</h2>
+      <p>The lightest Windows is the one that starts light. This guide uses <strong>Windows 11 IoT Enterprise LTSC</strong> — the long-term servicing edition with no bundled games, no Store app spam, and feature updates kept to a minimum. Pick the <em>en-US IoT Enterprise LTSC</em> ISO (see Resources for the download links page). The same steps work with a regular Windows 11 ISO; you will just debloat a little more in Section 3.</p>
+      <ol class="steps">
+        <li><strong>Make a bootable USB</strong> from the ISO (8&nbsp;GB or larger), boot from it, and install Windows onto your system drive.</li>
+        <li><strong>Stay connected</strong> to Wi-Fi or Ethernet during setup so Windows can pull basic hardware drivers.</li>
+        <li><strong>Skip the Microsoft account.</strong> On the sign-in screen press <kbd>Shift</kbd> + <kbd>F10</kbd> (on some laptops <kbd>Fn</kbd> + <kbd>Shift</kbd> + <kbd>F10</kbd>) to open Command Prompt, then run:
+          <div class="code"><button class="copy" type="button">Copy</button><pre><code>start ms-cxh:localonly</code></pre></div>
+          Continue with a local account.</li>
+        <li><strong>Run Windows Update once</strong> after the first boot and install everything it offers, then restart.</li>
+        <li><strong>Install your apps with <a href="https://ninite.com" target="_blank" rel="noopener">Ninite</a>.</strong> Tick the apps you need on one page, run one installer — no toolbars, no bundled extras, everything in one pass.</li>
+        <li><strong>Install the runtimes.</strong> Many apps and games need the Microsoft Visual C++ redistributables and legacy DirectX files. The offline all-in-one installer in Resources covers every version in one go, so nothing fails to launch later.</li>
+        <li><strong>Activate Windows</strong> with your licence key (Settings → System → Activation). The original guide uses MAS (Microsoft Activation Scripts, HWID option) — it is linked in Resources; use a licence you own and treat activation as your own responsibility.</li>
+      </ol>
+    </section>
+
+    <section id="debloat">
+      <h2>3. Debloat &amp; privacy</h2>
+      <p>Two tools, both on their safe preset. Create a restore point first — this is the section where it matters most.</p>
+      <h3>Step 1 — Chris Titus winutil</h3>
+      <p>Open PowerShell as Administrator and run:</p>
+      <div class="code"><button class="copy" type="button">Copy</button><pre><code>irm https://christitus.com/win | iex</code></pre></div>
+      <ol class="steps">
+        <li>In the <strong>Tweaks</strong> tab, select the <strong>Recommended</strong> preset — nothing beyond it.</li>
+        <li>Run the tweaks, then restart.</li>
+      </ol>
+      <h3>Step 2 — O&amp;O ShutUp10++</h3>
+      <ol class="steps">
+        <li>Open <a href="https://www.oo-software.com/en/shutup10" target="_blank" rel="noopener">O&amp;O ShutUp10++</a> and let it create a restore point when it asks.</li>
+        <li>Apply <strong>only the recommended settings</strong> (the green ones). The yellow and red items are where systems get broken — leave them alone.</li>
+        <li>Restart again.</li>
+      </ol>
+      <h3>Step 3 — Remove what you will never open</h3>
+      <p>Settings → Apps → Installed apps: uninstall the preinstalled games, trial apps, and anything you do not recognize as yours. If you are not sure what it is, leave it — disk space is cheap, a broken system is not.</p>
+      <div class="note warn"><strong>Never debloat away:</strong> Windows Update, Windows Defender, Bluetooth, printing, or network services. Tools that offer to remove them are not making your PC faster; they are making it fragile.</div>
+    </section>
+
+    <section id="performance">
+      <h2>4. Performance</h2>
+      <h3>Power plan — read this before you switch</h3>
+      <ul class="steps">
+        <li><strong>Desktops:</strong> enable the <strong>Ultimate Performance</strong> plan. Open PowerShell or Terminal and run:
+          <div class="code"><button class="copy" type="button">Copy</button><pre><code>powercfg -duplicatescheme e9a42b02-d5df-448d-aa00-03f14749eb61</code></pre></div>
+          Then select <em>Ultimate Performance</em> in Settings → System → Power (or Control Panel → Power Options).</li>
+        <li><strong>Laptops: stay on Balanced.</strong> Ultimate Performance on a laptop buys heat and fan noise, not speed. Balanced already boosts to full speed under load.</li>
+      </ul>
+      <h3>RAM at full speed — XMP / EXPO</h3>
+      <ol class="steps">
+        <li>Restart and press <kbd>Del</kbd> or <kbd>F2</kbd> during boot to enter the BIOS.</li>
+        <li>Enable <strong>XMP</strong> (Intel) or <strong>EXPO</strong> (AMD) so your RAM runs at its rated speed instead of the slow default.</li>
+        <li>Save and exit. If the PC ever fails to boot after this, clear the setting back to Auto — some RAM kits are not stable at their rated profile on every board.</li>
+      </ol>
+      <h3>DNS — a small, free speed-up</h3>
+      <p>Set your network adapter's IPv4 DNS to a fast public resolver:</p>
+      <div class="code"><button class="copy" type="button">Copy</button><pre><code>Primary:   1.1.1.1   (Cloudflare)
+Secondary: 8.8.8.8   (Google)</code></pre></div>
+      <p>Settings → Network &amp; internet → your adapter → DNS server assignment → Manual. Pick one provider as primary; the other works fine as the backup.</p>
+      <h3>Network adapter</h3>
+      <p>Install the latest driver from the adapter or laptop maker's site — not a driver-booster app. Then leave the adapter's advanced settings on their defaults unless you have a specific problem to fix; the defaults are already the tuned ones.</p>
+      <h3>Startup apps</h3>
+      <p>Task Manager → Startup apps: disable anything you do not need the second you log in (game launchers, updaters, chat apps you open yourself). This is the single biggest day-to-day speed win on most PCs.</p>
+    </section>
+
+    <section id="browser">
+      <h2>5. Browser</h2>
+      <p>Three flags make Chrome noticeably snappier. Open <code>chrome://flags</code>, set each one to <strong>Enabled</strong>, then relaunch:</p>
+      <div class="code"><button class="copy" type="button">Copy</button><pre><code>Parallel downloading:            #enable-parallel-downloading
+GPU rasterization:               #enable-gpu-rasterization
+Experimental QUIC protocol:      #enable-quic</code></pre></div>
+      <p>Add <strong>uBlock Origin</strong> from the Chrome Web Store — one extension that removes most ads and trackers, which also makes pages load faster. That is all a clean browser needs; ten extensions will undo everything this guide did.</p>
+    </section>
+
+    <section id="advanced">
+      <h2>6. Optional / advanced</h2>
+      <p>Everything in this section is a trade-off, not a free win. Skip it all and the guide still works.</p>
+      <h3>Memory Integrity — the honest trade-off</h3>
+      <p>Memory Integrity (Core Isolation) is a security feature that blocks unsigned drivers from kernel memory. Older guides — including the original version of this one — turn it off for a small performance gain.</p>
+      <ul class="steps">
+        <li><strong>On modern hardware, keep it ON.</strong> Current CPUs handle it at near-zero cost, and it is real protection for a daily machine.</li>
+        <li><strong>Turning it off is optional and advanced:</strong> consider it only on a dedicated gaming or single-purpose machine where you have measured it costing frames, and you accept weaker driver security. Windows Security → Device security → Core isolation → Memory integrity.</li>
+      </ul>
+      <h3>CompactOS — after about a month</h3>
+      <p>Once the system has settled (the original guide waits about a month of use), Windows can compress its own system files to free several GB. Run in an Administrator terminal:</p>
+      <div class="code"><button class="copy" type="button">Copy</button><pre><code>compact.exe /compactos:always</code></pre></div>
+      <p>Best for small SSDs. On a fast NVMe with plenty of free space, the gain is storage, not speed — and it is reversible with <code>compact.exe /compactos:never</code>.</p>
+    </section>
+
+    <section id="warnings">
+      <h2>7. What NOT to do</h2>
+      <ul class="donts">
+        <li><strong>Do not</strong> run random "debloat" scripts you found in a video description. If a script does not show you exactly what it changes, it is not a tool, it is a risk.</li>
+        <li><strong>Do not</strong> disable Windows Update, Defender, or the firewall to "gain performance". You gain almost nothing and lose your safety net.</li>
+        <li><strong>Do not</strong> use registry cleaners or driver-booster apps. They cause more problems than they have ever fixed.</li>
+        <li><strong>Do not</strong> apply ShutUp10++ or winutil settings beyond the recommended presets unless you can name exactly what the setting does.</li>
+        <li><strong>Do not</strong> turn off security features (Memory Integrity, SmartScreen) as a default habit — only as a measured, single-machine decision.</li>
+        <li><strong>Do not</strong> download Windows ISOs or tools from random re-upload sites. Use the links in Resources, and check file hashes when they are offered.</li>
+      </ul>
+    </section>
+
+    <section id="checklist">
+      <h2>8. Final checklist</h2>
+      <p>Work top to bottom. <span id="progress" class="progress">0 / 10 done</span></p>
+      <ul class="checklist">
+        <li><label><input type="checkbox" data-k="c1"> Files backed up, restore point created</label></li>
+        <li><label><input type="checkbox" data-k="c2"> Clean Windows 11 install done (LTSC or standard)</label></li>
+        <li><label><input type="checkbox" data-k="c3"> Local account used, Windows activated with my licence</label></li>
+        <li><label><input type="checkbox" data-k="c4"> Windows Update run once, PC restarted</label></li>
+        <li><label><input type="checkbox" data-k="c5"> Apps installed via Ninite, VC++ / DirectX runtimes installed</label></li>
+        <li><label><input type="checkbox" data-k="c6"> winutil Recommended tweaks + ShutUp10++ recommended only</label></li>
+        <li><label><input type="checkbox" data-k="c7"> Unused preinstalled apps removed, startup apps trimmed</label></li>
+        <li><label><input type="checkbox" data-k="c8"> Power plan set (Ultimate Performance desktop / Balanced laptop)</label></li>
+        <li><label><input type="checkbox" data-k="c9"> XMP / EXPO enabled, DNS set to 1.1.1.1 or 8.8.8.8</label></li>
+        <li><label><input type="checkbox" data-k="c10"> Chrome flags on, uBlock Origin installed</label></li>
+      </ul>
+      <p class="done-note">All ten ticked? You are done. Enjoy the quiet machine.</p>
+    </section>
+
+    <section id="resources">
+      <h2>Resources</h2>
+      <p>Every link used by this guide, plus the toolkit extras from the author's bookmarks. All links verified when this page was published.</p>
+      <h3>Guide resources</h3>
+      <ul class="res">
+        <li><a href="https://docs.google.com/document/d/1p6zvbcCgOn4RjkQbZk1r82lnwGYPswKA_uAJ_Y-cAmo/edit" target="_blank" rel="noopener">The original guide (Google Docs)</a> — Ze Song's Windows 11 Optimization Guide, the source this site rewrites.</li>
+        <li><a href="https://massgrave.dev/windows_ltsc_links" target="_blank" rel="noopener">Windows LTSC download links (MAS site)</a> — LTSC ISO links; pick en-US IoT Enterprise LTSC.</li>
+        <li><a href="https://github.com/ChrisTitusTech/winutil" target="_blank" rel="noopener">Chris Titus winutil (GitHub)</a> — the tweak utility used in Section 3; use the Recommended preset.</li>
+        <li><a href="https://github.com/slyfox1186/msft-visual-c-and-directx-offline-installer" target="_blank" rel="noopener">Visual C++ &amp; DirectX offline installer (GitHub)</a> — every VC++ redistributable and legacy DirectX runtime in one offline package.</li>
+        <li><a href="https://ninite.com" target="_blank" rel="noopener">Ninite</a> — install and update common apps in one clean pass.</li>
+        <li><a href="https://www.oo-software.com/en/shutup10" target="_blank" rel="noopener">O&amp;O ShutUp10++</a> — Windows privacy settings in one window; recommended settings only.</li>
+      </ul>
+      <h3>Extras / toolkit</h3>
+      <ul class="res">
+        <li><a href="https://github.com/Vendicated/Vencord" target="_blank" rel="noopener">Vencord (GitHub)</a> — a popular Discord client mod that adds plugins and themes.</li>
+        <li><a href="https://github.com/amd64fox/SpotX" target="_blank" rel="noopener">SpotX (GitHub)</a> — a modified Spotify client setup that blocks ads and updates.</li>
+        <li><a href="https://archive.org/details/sketchup-make-2017" target="_blank" rel="noopener">SketchUp Make 2017 (Internet Archive)</a> — the last free desktop SketchUp, archived on archive.org with its file listing and downloads.</li>
+        <li><a href="https://github.com/Oksion/XiControl" target="_blank" rel="noopener">XiControl (GitHub)</a> — tray utility for Xiaomi / Redmi laptops: battery charge limit, performance modes, and auto refresh rate, with no extra drivers.</li>
+      </ul>
+    </section>
+
+    <footer class="foot">
+      <p>Windows 11 Min-Max Optimization Guide — rewritten edition. Based on the Windows 11 Optimization Guide by Ze (Mark) Song. For personal use. Tool names belong to their owners; activation and licensing are the reader's own responsibility.</p>
+    </footer>
+
+  </main>
+</div>
+
+<script src="script.js?v=1"></script>
+</body>
+</html>
