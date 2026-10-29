@@ -120,3 +120,26 @@ h1,h2,h3{font-family:'Sora','Inter',sans-serif}
 .to-top.show{opacity:1;visibility:visible;transform:translateY(0)}
 .to-top:hover{background:#1d2c49}
 @media (prefers-reduced-motion:reduce){.to-top{transition:none;transform:none}}
+
+/* Language switcher */
+.lang-switch{margin-top:16px;font-size:.88rem;color:#7f96b5}
+.lang-switch strong{color:#fff}
+.lang-switch a{color:#7dd3fc;text-decoration:none;font-weight:600}
+.lang-switch a:hover{text-decoration:underline}
+
+/* Start-here quick paths */
+.quickpaths{margin-top:26px}
+.qp-title{font-family:'Sora','Inter',sans-serif;font-weight:700;font-size:1.05rem;margin-bottom:12px}
+.qp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.qp-card{display:block;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;text-decoration:none;color:var(--ink)}
+.qp-card:hover{border-color:var(--accent);box-shadow:0 4px 16px rgba(20,33,61,.08)}
+.qp-card strong{display:block;font-size:1rem;margin-bottom:6px;color:var(--accent)}
+.qp-card span{font-size:.9rem;color:var(--muted);line-height:1.5;display:block}
+@media (max-width:900px){.qp-grid{grid-template-columns:1fr}}
+
+/* Per-section time estimate */
+.time-est{display:inline-block;background:var(--accent-soft);color:#1c4390;font-size:.8rem;font-weight:600;padding:3px 11px;border-radius:999px;margin:-4px 0 12px}
+
+/* Chinese typography */
+html[lang="zh-CN"] body{font-family:'Inter','PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans SC',system-ui,sans-serif}
+html[lang="zh-CN"] h1,html[lang="zh-CN"] h2,html[lang="zh-CN"] h3,html[lang="zh-CN"] .qp-title{font-family:'Sora','PingFang SC','Microsoft YaHei','Noto Sans SC',sans-serif}

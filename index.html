@@ -4,12 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#0d1526">
-<title>Windows 11 Optimization Guide — Min-Max: Minimal Bloat, Maximum Performance</title>
+<title>Windows 11, Optimized — the LTSC Way | Min-Max Guide</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
-<meta name="description" content="A clean, step-by-step Windows 11 optimization guide: minimal bloat, maximum performance. LTSC clean install, debloat, privacy, power, browser, and a final checklist. By Ze (Mark) Song.">
-<link rel="stylesheet" href="styles.css?v=2">
+<meta name="description" content="Windows 11, optimized the LTSC way: turn a normal Windows 11 install into an LTSC-clean, min-max system — no Store bloat, no noise. Clean install, debloat, privacy, power, browser, and a final checklist. Open source (MIT). By Ze (Mark) Song.">
+<link rel="canonical" href="https://marksong0917.github.io/win11-optimization-guide/">
+<link rel="alternate" hreflang="en" href="https://marksong0917.github.io/win11-optimization-guide/">
+<link rel="alternate" hreflang="zh-CN" href="https://marksong0917.github.io/win11-optimization-guide/zh/">
+<link rel="alternate" hreflang="x-default" href="https://marksong0917.github.io/win11-optimization-guide/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Windows 11, Optimized — the LTSC Way">
+<meta property="og:description" content="Turn a normal Windows 11 install into an LTSC-clean, min-max system — no Store bloat, no noise. Step by step, open source.">
+<meta property="og:url" content="https://marksong0917.github.io/win11-optimization-guide/">
+<meta name="twitter:card" content="summary">
+<link rel="stylesheet" href="styles.css?v=3">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f2040'/%3E%3Ctext x='32' y='43' font-family='Arial' font-size='26' font-weight='700' fill='%237dd3fc' text-anchor='middle'%3EW%3C/text%3E%3C/svg%3E">
 </head>
 <body>
@@ -20,6 +29,7 @@
   <aside class="sidebar">
     <a class="logo" href="#top">Win11 <span>Min-Max</span> Guide</a>
     <p class="logo-sub">Minimal bloat.<br>Maximum performance.<br>Clean system.</p>
+    <p class="lang-switch"><strong>EN</strong> · <a href="./zh/" hreflang="zh-CN">中文</a></p>
     <nav class="side-nav" aria-label="Sections">
       <a href="#start">1. Start here — safety first</a>
       <a href="#install">2. Clean install</a>
@@ -37,8 +47,8 @@
   <main class="content" id="top">
 
     <header class="hero">
-      <h1>Windows 11 Optimization Guide</h1>
-      <p class="hero-tag">The min-max way: strip Windows down to what you need, keep everything that matters, and make the machine fast and quiet. Step by step, in plain English.</p>
+      <h1>Windows 11, Optimized — the LTSC Way</h1>
+      <p class="hero-tag">This guide turns a normal Windows 11 install into an LTSC-clean, min-max system: no Store bloat, no noise, nothing you did not choose — while keeping everything that matters. Step by step, in plain English. The guide itself is open source.</p>
       <div class="hero-meta">
         <span>Time: about 1 hour</span>
         <span>Skill: beginner-friendly</span>
@@ -47,8 +57,18 @@
       <p class="updated">Last updated: October 2026</p>
     </header>
 
+    <div class="quickpaths" aria-label="Start here">
+      <p class="qp-title">Start here — pick your path</p>
+      <div class="qp-grid">
+        <a class="qp-card" href="#install"><strong>Clean install</strong><span>Starting fresh, or reinstalling anyway? Begin at Section 2 and do the whole path.</span></a>
+        <a class="qp-card" href="#debloat"><strong>Already installed — just clean it</strong><span>Keep your current system. Do Section 1 (safety), then jump to debloat in Section 3.</span></a>
+        <a class="qp-card" href="#checklist"><strong>Just the checklist</strong><span>Know the steps already? Go straight to the final checklist in Section 8 and tick them off.</span></a>
+      </div>
+    </div>
+
     <section id="start">
       <h2>1. Start here — safety first</h2>
+      <p class="time-est">~5 min</p>
       <p>Do these before you change anything. Five minutes here saves hours later.</p>
       <ol class="steps">
         <li><strong>Back up your files.</strong> Copy anything you care about to an external drive or cloud storage. A clean install erases the drive.</li>
@@ -61,6 +81,7 @@
 
     <section id="install">
       <h2>2. Clean install path</h2>
+      <p class="time-est">~30–45 min</p>
       <p>The lightest Windows is the one that starts light. This guide uses <strong>Windows 11 IoT Enterprise LTSC</strong> — the long-term servicing edition with no bundled games, no Store app spam, and feature updates kept to a minimum. Pick the <em>en-US IoT Enterprise LTSC</em> ISO (see Resources for the download links page). The same steps work with a regular Windows 11 ISO; you will just debloat a little more in Section 3.</p>
       <ol class="steps">
         <li><strong>Make a bootable USB</strong> from the ISO (8&nbsp;GB or larger), boot from it, and install Windows onto your system drive.</li>
@@ -77,6 +98,7 @@
 
     <section id="debloat">
       <h2>3. Debloat &amp; privacy</h2>
+      <p class="time-est">~20 min</p>
       <p>Two tools, both on their safe preset. Create a restore point first — this is the section where it matters most.</p>
       <h3>Step 1 — Chris Titus winutil</h3>
       <p>Open PowerShell as Administrator and run:</p>
@@ -93,11 +115,13 @@
       </ol>
       <h3>Step 3 — Remove what you will never open</h3>
       <p>Settings → Apps → Installed apps: uninstall the preinstalled games, trial apps, and anything you do not recognize as yours. If you are not sure what it is, leave it — disk space is cheap, a broken system is not.</p>
+      <div class="note"><strong>Prefer a script?</strong> The <a href="https://github.com/marksong0917/win11-minmax-toolkit" target="_blank" rel="noopener">Win11 MinMax Toolkit</a> is this guide's companion on GitHub: it applies the safe, scriptable parts of this section (and Sections 4–5) in a few minutes — restore point first, everything reversible, nothing touches Windows Update or Defender.</div>
       <div class="note warn"><strong>Never debloat away:</strong> Windows Update, Windows Defender, Bluetooth, printing, or network services. Tools that offer to remove them are not making your PC faster; they are making it fragile.</div>
     </section>
 
     <section id="performance">
       <h2>4. Performance</h2>
+      <p class="time-est">~15 min</p>
       <h3>Power plan — read this before you switch</h3>
       <ul class="steps">
         <li><strong>Desktops:</strong> enable the <strong>Ultimate Performance</strong> plan. Open PowerShell or Terminal and run:
@@ -124,6 +148,7 @@ Secondary: 8.8.8.8   (Google)</code></pre></div>
 
     <section id="browser">
       <h2>5. Browser</h2>
+      <p class="time-est">~5 min</p>
       <p>Three flags make Chrome noticeably snappier. Open <code>chrome://flags</code>, set each one to <strong>Enabled</strong>, then relaunch:</p>
       <div class="code"><button class="copy" type="button">Copy</button><pre><code>Parallel downloading:            #enable-parallel-downloading
 GPU rasterization:               #enable-gpu-rasterization
@@ -133,6 +158,7 @@ Experimental QUIC protocol:      #enable-quic</code></pre></div>
 
     <section id="advanced">
       <h2>6. Optional / advanced</h2>
+      <p class="time-est">~10 min, all optional</p>
       <p>Everything in this section is a trade-off, not a free win. Skip it all and the guide still works.</p>
       <h3>Memory Integrity — the honest trade-off</h3>
       <p>Memory Integrity (Core Isolation) is a security feature that blocks unsigned drivers from kernel memory. Older guides — including the original version of this one — turn it off for a small performance gain.</p>
@@ -148,6 +174,7 @@ Experimental QUIC protocol:      #enable-quic</code></pre></div>
 
     <section id="warnings">
       <h2>7. What NOT to do</h2>
+      <p class="time-est">~2 min read</p>
       <ul class="donts">
         <li><strong>Do not</strong> run random "debloat" scripts you found in a video description. If a script does not show you exactly what it changes, it is not a tool, it is a risk.</li>
         <li><strong>Do not</strong> disable Windows Update, Defender, or the firewall to "gain performance". You gain almost nothing and lose your safety net.</li>
@@ -160,6 +187,7 @@ Experimental QUIC protocol:      #enable-quic</code></pre></div>
 
     <section id="checklist">
       <h2>8. Final checklist</h2>
+      <p class="time-est">~5 min to verify</p>
       <p>Work top to bottom. <span id="progress" class="progress">0 / 10 done</span></p>
       <ul class="checklist">
         <li><label><input type="checkbox" data-k="c1"> Files backed up, restore point created</label></li>
@@ -188,6 +216,8 @@ Experimental QUIC protocol:      #enable-quic</code></pre></div>
         <li><a href="https://ninite.com" target="_blank" rel="noopener">Ninite</a> — install and update common apps in one clean pass.</li>
         <li><a href="https://www.oo-software.com/en/shutup10" target="_blank" rel="noopener">O&amp;O ShutUp10++</a> — Windows privacy settings in one window; recommended settings only.</li>
         <li><a href="https://marksong0917.github.io/home-server-guide/" target="_blank" rel="noopener">Home Server Guide</a> — a companion read: once a machine is tuned, my Home Server Guide turns an old PC into a 24/7 private server.</li>
+        <li><a href="https://github.com/marksong0917/win11-minmax-toolkit" target="_blank" rel="noopener">Win11 MinMax Toolkit (GitHub)</a> — the script companion to this guide: safe, reversible tweaks with a restore point first.</li>
+        <li><a href="https://github.com/marksong0917/win11-optimization-guide" target="_blank" rel="noopener">This guide on GitHub</a> — the guide is open source under the MIT licence; issues and pull requests are welcome.</li>
       </ul>
       <h3>Extras / toolkit</h3>
       <ul class="res">
@@ -209,7 +239,7 @@ Experimental QUIC protocol:      #enable-quic</code></pre></div>
     </section>
 
     <footer class="foot">
-      <p>Windows 11 Min-Max Optimization Guide — rewritten edition. Based on the Windows 11 Optimization Guide by Ze (Mark) Song. For personal use. Tool names belong to their owners; activation and licensing are the reader's own responsibility.</p>
+      <p>Windows 11, Optimized — the LTSC Way (Min-Max Guide), open source under the <a href="https://github.com/marksong0917/win11-optimization-guide/blob/main/LICENSE" target="_blank" rel="noopener">MIT licence</a>. Based on the Windows 11 Optimization Guide by Ze (Mark) Song. Tool names belong to their owners; activation and licensing are the reader's own responsibility.</p>
     </footer>
 
   </main>
