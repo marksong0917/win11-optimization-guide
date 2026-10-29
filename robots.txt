@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://marksong0917.github.io/win11-optimization-guide/sitemap.xml
